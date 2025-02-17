@@ -9,7 +9,7 @@ function randomID(len = 5) {
   }
   return result;
 }
-alert(import.meta.env.VITE_maya)
+
 
 
 
