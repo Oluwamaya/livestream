@@ -6,6 +6,9 @@ import App from './App.tsx';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Room from './components/Room.tsx';
 import Home from './pages/Home.tsx';
+import Login from './pages/Admin Page/Login.tsx';
+import SignUp from './pages/Admin Page/SignUp.tsx';
+import AdminDashboard from './pages/Admin Page/AdminDashboard.tsx';
 
 // Create a browser router and define the routes
 const router = createBrowserRouter([
@@ -20,7 +23,14 @@ const router = createBrowserRouter([
       {
         path: "/live-streaming", // Live streaming page route
         element: <Room />
-      }
+      },
+      {
+        path: "/hostlogin", element : <Login/>
+      },
+      {
+        path: "/signupAdmin", element : <SignUp/>
+      },
+      {path : "/host" , element : <AdminDashboard/>}
     ]
   },
 ]);

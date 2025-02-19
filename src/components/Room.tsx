@@ -1,5 +1,6 @@
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { getUrlParams } from '../utlis/middleware';
+import axios from 'axios';
 
 function randomID(len = 5) {
   const chars = '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP';
@@ -9,9 +10,6 @@ function randomID(len = 5) {
   }
   return result;
 }
-
-
-
 
 const Room = () => {
   const roomID = getUrlParams().get('roomID') || randomID(5);
@@ -54,7 +52,29 @@ const Room = () => {
     randomID(5)  // userName
   );
 
+  // Function to notify the backend when the live stream starts
+  const notifyStreamStart = async () => {
+    try {
+      await axios.post('http://localhost:4000/start-stream', { roomID });
+      console.log('✅ Stream started:', roomID);
+    } catch (error) {
+      console.error('❌ Failed to start stream:', error);
+    }
+  };
+
+  // Function to notify the backend when the live stream ends
+  const notifyStreamEnd = async () => {
+    try {
+      await axios.post("http://localhost:4000/end-stream", { roomID: "" });
+      console.log("✅ Stream ended");
+    } catch (error) {
+      console.error("❌ Failed to stop stream:", error);
+    }
+  };
+
   const myMeeting = async (element: HTMLDivElement | null) => {
+    if (!element) return;
+
     const zp = ZegoUIKitPrebuilt.create(kitToken);
     zp.joinRoom({
       container: element,
@@ -63,9 +83,18 @@ const Room = () => {
         config: { role },
       },
       sharedLinks,
+      onJoinRoom: () => {
+        if (role === ZegoUIKitPrebuilt.Host) {
+          notifyStreamStart(); // Notify backend when the host starts the live stream
+        }
+      },
+      onLeaveRoom: () => {
+        if (role === ZegoUIKitPrebuilt.Host) {
+          notifyStreamEnd(); // Notify backend when the host ends the live stream
+        }
+      }
     });
   };
- 
 
   return (
     <div
