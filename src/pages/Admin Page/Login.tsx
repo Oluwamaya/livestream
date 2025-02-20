@@ -30,7 +30,7 @@ const Login: React.FC = () => {
       setErrorMessage("");
       console.log(values)
 
-      await axios.post("https://zego-backend.vercel.app/logme2222",values).then((res)=>{
+      await axios.post("https://zego-backend.vercel.app/login",values).then((res)=>{
         console.log(res)
         alert(res.data.message)
         localStorage.setItem("adminToken", res.data.token)
