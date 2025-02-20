@@ -31,7 +31,7 @@ const Hero = ({
   // Function to fetch live stream status
   const fetchLiveStreamStatus = () => {
     axios
-      .get("http://localhost:4000/live-stream")
+      .get("https://zego-backend.vercel.app/live-stream")
       .then((res) => {
         if (res.data.isLive) {
           setIsLive(true);
@@ -70,7 +70,7 @@ const Hero = ({
           </p>
           {isLive ? (
             <a
-              href={`http://localhost:5173/live-streaming?roomID=${roomID}&role=Audience`}
+              href={`https://livestream-sable.vercel.app/live-streaming?roomID=${roomID}&role=Audience`}
               className="rounded-full px-8 py-3 bg-blue-500 text-white shadow-lg hover:bg-blue-600 transition duration-300"
             >
               Join Live Service

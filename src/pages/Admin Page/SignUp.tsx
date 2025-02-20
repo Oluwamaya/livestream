@@ -25,7 +25,7 @@ const SignUp = () => {
   const handleSubmit = async (values: unknown) => {
     console.log(values)
 
-    await axios.post("http://localhost:4000/register",values).then((res)=>{
+    await axios.post("https://zego-backend.vercel.app/register",values).then((res)=>{
         console.log(res)
         if (res.status === 201) {
         alert(res.data.message )

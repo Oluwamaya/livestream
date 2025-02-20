@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   const verifyToken = () => {
     axios
-      .get("http://localhost:4000/verifyToken", {
+      .get("https://zego-backend.vercel.app/verifyToken", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

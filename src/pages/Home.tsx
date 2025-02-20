@@ -1,11 +1,11 @@
 import Hero from "../components/Hero"
-import LiveStreaming from "../components/LiveStreaming"
+
 
 const Home = () => {
   return (
     <>
     <Hero/>
-    <LiveStreaming/>
+    
     </>
   )
 }
