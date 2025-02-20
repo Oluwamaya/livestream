@@ -31,7 +31,7 @@ const Hero = ({
   // Function to fetch live stream status
   const fetchLiveStreamStatus = () => {
     axios
-      .get("https://zego-backend.vercel.app/live-stream")
+      .get("https://zego-backend.vercel.app/api/live-stream")
       .then((res) => {
         if (res.data.isLive) {
           setIsLive(true);

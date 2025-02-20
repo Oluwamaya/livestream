@@ -55,7 +55,7 @@ const Room = () => {
   // Function to notify the backend when the live stream starts
   const notifyStreamStart = async () => {
     try {
-      await axios.post('http://localhost:4000/start-stream', { roomID });
+      await axios.post('https://zego-backend.vercel.app/api/start-stream', { roomID });
       console.log('✅ Stream started:', roomID);
     } catch (error) {
       console.error('❌ Failed to start stream:', error);
@@ -65,7 +65,7 @@ const Room = () => {
   // Function to notify the backend when the live stream ends
   const notifyStreamEnd = async () => {
     try {
-      await axios.post("http://localhost:4000/end-stream", { roomID: "" });
+      await axios.post("https://zego-backend.vercel.app/api/end-stream", { roomID: "" });
       console.log("✅ Stream ended");
     } catch (error) {
       console.error("❌ Failed to stop stream:", error);
